@@ -22,4 +22,12 @@ class Tag(models.Model):
         return self.content
 
 
+class Comment(models.Model):
+    author = models.CharField(max_length=100)
+    context = models.TextField(max_length=1000)
+    pub_time = models.DateTimeField('pub time', auto_now_add=True)
+    article = models.ForeignKey(Article, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.context[:20]
 

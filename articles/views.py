@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404, _get_queryset
 from django.http import HttpResponse
-from .models import Article
+from .models import Article, Comment
 from markdown import markdown
 # Create your views here.
 
@@ -25,3 +25,11 @@ def home(request):
     article_list = _get_queryset(Article)
     content = {'article_list': article_list}
     return render(request, 'articles/blog_home.html', content)
+
+
+def deal_comment(request, article_title):
+    article = get_object_or_404(Article, title=article_title)
+    comment_context = request.POST['comment']
+    comment = Comment.objects.create(article=article, context=comment_context, author='admin')
+    comment.save()
+    return HttpResponse('评论完成')

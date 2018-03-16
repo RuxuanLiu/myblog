@@ -1,0 +1,6 @@
+<form action="{% url 'articles:deal_comment' title %}" method="post">
+    {% csrf_token %}
+    <label for="comment">您的评论</label>
+    <input type="text" name="comment" id="comment">
+    <input type="submit">
+</form>
