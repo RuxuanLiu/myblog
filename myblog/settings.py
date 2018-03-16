@@ -25,7 +25,7 @@ SECRET_KEY = 'ecr65liq$x!6p+$s+5()%%@bd09xc+^cukb&+&l#)wj$-6ht$y'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
