@@ -1,6 +1,7 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, _get_queryset
 from django.http import HttpResponse
 from .models import Article
+from markdown import markdown
 # Create your views here.
 
 
@@ -9,14 +10,18 @@ def index(request):
 
 
 def detail(request, article_title):
-    article = Article.objects.get(title=article_title)
+    article = get_object_or_404(Article, title =article_title)
     title = article.title
-    content = article.content
-    context = {'title': title, 'content': content}
+    content_render_by_markdown = markdown(article.content, extensions=[
+                                     'markdown.extensions.extra',
+                                     'markdown.extensions.codehilite',
+                                     'markdown.extensions.toc',
+                                  ])
+    context = {'title': title, 'content': content_render_by_markdown}
     return render(request, 'articles/blog_main.html', context)
 
 
 def home(request):
-    article_list = Article.objects.all()
+    article_list = _get_queryset(Article)
     content = {'article_list': article_list}
     return render(request, 'articles/blog_home.html', content)
