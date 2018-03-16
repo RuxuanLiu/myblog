@@ -1,0 +1,27 @@
+{% extends "articles/blog_base.html"%}
+
+{% block title %}
+    Blog Home
+{% endblock %}
+
+{% block content %}
+    {% for article in article_list %}
+     <div class="col-sm-8 blog-main">
+
+          <div class="blog-post">
+            <a href={% url "articles:detail" article.title %}>
+                <h2 class="blog-post-title">{{ article.title }}</h2>
+            </a>
+                <p class="blog-post-meta"> by <a href="#">Mark</a></p>
+                {% if article.content|length > 40 %}
+                    {{ article.content|slice:':40' }}......
+                    <a href={% url "articles:detail" article.title %}>
+                    read more
+                    </a>
+                {% else %}
+                    {{ article.content }}
+              {% endif %}
+          </div>
+          </div><!-- /.blog-post -->
+     {% endfor %}
+{% endblock %}
