@@ -1,8 +1,9 @@
-from django.shortcuts import render, get_object_or_404, _get_queryset
+from django.shortcuts import render, get_object_or_404, get_list_or_404, _get_queryset
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Article, Comment
 from markdown import markdown
 from django.urls import reverse
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 
@@ -29,10 +30,10 @@ def home(request):
     return render(request, 'articles/blog_home.html', content)
 
 
+@login_required
 def deal_comment(request, article_title):
     article = get_object_or_404(Article, title=article_title)
     comment_context = request.POST['comment']
-    comment_author = request.POST['author']
-    comment = Comment.objects.create(article=article, context=comment_context, author=comment_author)
+    comment = Comment.objects.create(article=article, context=comment_context, author=request.user.username)
     comment.save()
     return HttpResponseRedirect(reverse('articles:detail', args=(article_title,)))
