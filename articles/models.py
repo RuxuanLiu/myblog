@@ -14,6 +14,7 @@ class Article(models.Model):
     title = models.CharField(max_length=100)
     content = models.TextField(null=True, blank=True)
     pub_date = models.DateTimeField('date published')
+    author = models.CharField(max_length=100, default='Liu')
     tag = models.ManyToManyField(Tag, null=True)
 
     def __str__(self):

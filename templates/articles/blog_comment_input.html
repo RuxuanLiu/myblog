@@ -1,5 +1,5 @@
 <div class="comment_input">
-<form action="{% url 'articles:deal_comment' title %}" method="post">
+<form action="{% url 'articles:deal_comment' article.title %}" method="post">
     {% csrf_token %}
     <label for="comment" class="label-control">您的评论</label>
     <textarea class="form-control" rows="3" name="comment" id="comment">您的感想</textarea>
