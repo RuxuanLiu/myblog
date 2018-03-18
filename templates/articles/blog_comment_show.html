@@ -1,7 +1,18 @@
-<div class="container comment_show_area">
+<div class="container comment_show_area ">
     {% for comment in comment_list %}
-        <h5>{{ comment.author }}</h5>
-        <p>{{ comment.pub_time }}</p>
-        <p>{{ comment.context }}</p>
+        <div class="row">
+        <div class="col-sm-12">
+            <p>{{ comment.context }}</p>
+            <div class="comment_info">
+                <div class="col-sm-6">
+                    <small class="comment_time">作者：{{ comment.author }}</small>
+                </div>
+                <div class="col-sm-6">
+                    <small class="comment_time">时间：{{ comment.pub_time }}</small>
+                </div>
+            </div>
+        </div>
+        </div>
+        <hr/>
     {% endfor %}
 </div>
