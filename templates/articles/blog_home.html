@@ -5,10 +5,9 @@
 {% endblock %}
 
 {% block content %}
+    <div class="col-sm-8 blog-main">
     {% for article in article_list %}
-     <div class="col-sm-8 blog-main">
-
-          <div class="blog-post">
+        <div class="blog-post">
             <a href={% url "articles:detail" article.title %}>
                 <h2 class="blog-post-title">{{ article.title }}</h2>
             </a>
@@ -22,6 +21,7 @@
                     {{ article.content }}
               {% endif %}
           </div>
-          </div><!-- /.blog-post -->
+          <!-- /.blog-post -->
      {% endfor %}
+    </div><!-- bloglist -->
 {% endblock %}
