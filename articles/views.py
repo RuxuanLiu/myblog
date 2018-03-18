@@ -15,8 +15,8 @@ def index(request):
 
 def detail(request, article_title):
     article = get_object_or_404(Article, title=article_title)
-    RAT_list = RAT.objects.filter(article__title='Hello World')
-    article_tag_list = [obj.tag for obj in RAT_list ]
+    RAT_list = RAT.objects.filter(article__title=article_title)
+    article_tag_list = [obj.tag for obj in RAT_list]
     comment_list = Comment.objects.filter(article__title=article_title)
 
     content_render_by_markdown = markdown(article.content, extensions=[
