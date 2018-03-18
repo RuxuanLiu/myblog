@@ -1,14 +1,20 @@
 {% extends 'articles/blog_base.html' %}
 {% block title %}
-    {{ title }}
+    {{ article.title }}
 {% endblock %}
 
 {% block content %}
  <div class="col-sm-8 blog-main">
 
           <div class="blog-post">
-            <h2 class="blog-post-title">{{ title }}</h2>
+            <h2 class="blog-post-title">{{ article.title }}</h2>
             <p class="blog-post-meta">{{ article.pub_date }} <a href="#">{{ article.author }}</a></p>
+              <p>{% for tag in article_tag_list %}
+                  <a href="#" class="article_tag"> {{ tag }}</a>
+                  &nbsp;&nbsp;
+              {% endfor %}</p>
+          <hr/>
+
               {{ content|safe }}
           </div><!-- /.blog-post -->
      {% include 'articles/blog_comment_input.html' %}

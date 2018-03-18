@@ -172,3 +172,16 @@ h6, .h6 {
 .comment_author{
     color: #bbbbbb;
 }
+
+.article_tag {
+    position: relative;
+    display: inline-block;
+    height: 30px;
+    padding: 0 12px;
+    font-size: 14px;
+    line-height: 30px;
+    color: #0084ff;
+    vertical-align: top;
+    border-radius: 100px;
+    background: rgba(0,132,255,.1);
+}
